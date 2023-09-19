@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Evolver events app",
   "main": "server.js",
+  "type": "module",
   "engines": {
-    "node": "^18"
+	"node": "^18"
   },
   "directories": {
     "test": "tests"

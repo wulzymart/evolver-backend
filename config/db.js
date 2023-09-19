@@ -1,22 +1,11 @@
-const { Sequelize } = require('sequelize');
+import { Sequelize } from 'sequelize';
 
-const sequelize = new Sequelize(
-  'events_app_db',
-  'root',
-  'FrankUdee101.',
-  {
-    host: 'localhost',
-    dialect: 'mysql'
-  }
-);
+const db = new Sequelize({
+	dialect: 'mysql',
+	database: process.env.DB_NAME,
+	username: process.env.DB_USER,
+	password: process.env.DB_PASS,
+	host: process.env.DB_HOST,
+});
 
-const connect = async () => {
-  try {
-    await sequelize.authenticate();
-    console.log('Database Initialized Successfully!');
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-module.exports = { sequelize, connect }
+export default db;
