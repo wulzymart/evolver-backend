@@ -1,0 +1,26 @@
+{
+  "name": "evolver-events-backend",
+  "version": "1.0.0",
+  "description": "Evolver events app",
+  "main": "server.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hngx-org/Evolver-events-backend.git"
+  },
+  "keywords": [
+    "Events"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hngx-org/Evolver-events-backend/issues"
+  },
+  "homepage": "https://github.com/hngx-org/Evolver-events-backend#readme"
+}
