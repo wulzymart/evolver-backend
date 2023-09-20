@@ -14,5 +14,8 @@ const Interest = db.define("Interest", {
     allowNull: false,
   },
 });
+ Interest.belongsTo(interested_events, {
+   foreignKey: "event_id",
+ });
 
 export default Interest;
