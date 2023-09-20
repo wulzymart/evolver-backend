@@ -2,7 +2,7 @@
   "name": "evolver-events-backend",
   "version": "1.0.0",
   "description": "Evolver events app",
-  "main": "server.js",
+  "main": "app.js",
   "type": "module",
   "directories": {
     "test": "tests"
