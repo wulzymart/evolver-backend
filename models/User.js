@@ -3,20 +3,23 @@ import { DataTypes } from 'sequelize'
 
 const User = db.define('user', {
   id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     primaryKey: true,
-    autoIncrement: true,
   },
   name: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false
   },
   email: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false
+  },
+  avatar: {
+    type: DataTypes.TEXT,
+    allowNull: true
   }
 });
 
-User.sync()
+// await User.sync();
 
 export default User;
