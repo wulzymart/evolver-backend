@@ -19,6 +19,13 @@ jobs:
       - run:
           name: Install npm dependencies
           command: npm install
+          environment:
+            DB_NAME: test_db
+            DB_USER: team
+            DB_PASS: event_team
+            DB_HOST: ls-748579094099b0766a964caacd8cc4a4b73ec231.czwhjvdkncwk.us-east-2.rds.amazonaws.com
+            DB_PORT: 3306
+
       - run:
           name: Run the Project
           command: npm run start
@@ -26,6 +33,6 @@ jobs:
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
-  build:
+  build_project:
     jobs:
       - build
