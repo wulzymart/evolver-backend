@@ -1,6 +1,6 @@
 import GroupMembership from "../../../models/GroupMembership";
 
-async function addUserToGroup(req, res) {
+function addUserToGroup(req, res) {
   const { userId, groupId } = req.params;
 
   try {
