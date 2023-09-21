@@ -18,3 +18,4 @@ const Like = db.define("like", {
     },
   },
 });
+export default Like;
