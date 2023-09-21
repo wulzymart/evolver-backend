@@ -1,4 +1,4 @@
-const Event = require('../../../models/Event');
+import Event from '../../../models/Event';
 
 // defines a function to delete events by ID
 const deleteEvents = async (req, res) => {
@@ -15,7 +15,7 @@ const deleteEvents = async (req, res) => {
             }
         })
         if (!events) {
-            res.status(400).json('Event can not be found')
+            res.status(404).json('Event can not be found')
         }
 
         // deletes events
