@@ -1,3 +1,4 @@
-import { removeUserFromGroup } from "./methods/removeUserFromGroup.js";
+import removeUserFromGroup from "./methods/removeUserFromGroup.js";
+import addUserToGroup from "./methods/addUserToGroup.js";
 
-export { removeUserFromGroup }
+export default { addUserToGroup, removeUserFromGroup }
