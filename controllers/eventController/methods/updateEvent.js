@@ -31,6 +31,4 @@ const updateEvent = async (req, res) => {
 };
 
 
-module.exports = {
-    updateEvent,
-};
+export default updateEvent;

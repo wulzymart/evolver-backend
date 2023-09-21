@@ -26,6 +26,4 @@ const deleteEvents = async (req, res) => {
     }
 };
 
-module.exports = {
-    deleteEvents,
-}
+export default deleteEvents;
