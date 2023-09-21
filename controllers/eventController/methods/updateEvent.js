@@ -6,14 +6,15 @@ const Event = require('../../../models/Event');
 const updateEvent = async (req, res) => {
     try {
 
-        // retrieve id as the the query parameter
-        const { id } = req.params;
+        // retrieves id 
+        const eventId = req.params.id;
+
         // checks if id is provided and an UUID
-        if (!id || !isValidUuid(id)) { throw new Error('missing or Invalid ID') };
+        if (!eventId || !isValidUuid(eventId)) { throw new Error('missing or Invalid ID') };
         // finds events by its ID 
         const events = await Event.findOne({
             where:{
-                id: id,
+                id: eventId,
             }
         });
         if (!events) {

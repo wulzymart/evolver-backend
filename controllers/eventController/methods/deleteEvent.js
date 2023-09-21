@@ -3,10 +3,15 @@ const Event = require('../../../models/Event');
 // defines a function to delete events by ID
 const deleteEvents = async (req, res) => {
     try {
-        const { id } = req.params
+        // retrieve id as eventId
+        const eventId = req.params.id;
+
+        // checks if id is provided and an UUID
+        if (!eventId || !isValidUuid(eventId)) { throw new Error('missing or Invalid ID') };
+
         const events = await Event.findOne({
             where: {
-                id: id,
+                id: eventId,
             }
         })
         if (!events) {
