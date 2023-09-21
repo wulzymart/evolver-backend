@@ -1,4 +1,5 @@
 import removeUserFromGroup from "./methods/removeUserFromGroup.js";
 import addUserToGroup from "./methods/addUserToGroup.js";
+import { updateGroup } from "./methods/updateGroup.js";
 
-export { addUserToGroup, removeUserFromGroup }
+export { addUserToGroup, removeUserFromGroup, updateGroup }
