@@ -13,7 +13,7 @@ jobs:
     # See: https://circleci.com/docs/configuration-reference/#executor-job
     docker:
       - image: circleci/node
-      - image: circleci/mysql
+      # - image: circleci/mysql
     # Add steps to the job
     # See: https://circleci.com/docs/configuration-reference/#steps
     steps:
