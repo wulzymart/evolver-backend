@@ -1,4 +1,6 @@
 import { Sequelize, DataTypes } from "sequelize";
+import Event from "./Event.js";
+import Image from "./Image.js";
 
 import db from "../config/db.js";
 
