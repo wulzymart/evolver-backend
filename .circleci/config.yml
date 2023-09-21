@@ -8,17 +8,20 @@ jobs:
   build:
     # machine:
     # image: ubuntu-2004:current
-    working_directory: ~/.
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/configuration-reference/#executor-job
     docker:
       - image: circleci/node
-      # - image: circleci/mysql
     # Add steps to the job
     # See: https://circleci.com/docs/configuration-reference/#steps
     steps:
       - checkout
-      - run: npm run start
+      - run:
+          name: Install npm dependencies
+          command: npm install
+      - run:
+          name: Run the Project
+          command: npm run start
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
