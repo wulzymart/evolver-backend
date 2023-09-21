@@ -1,5 +1,5 @@
 import express from 'express'
-import { removeUserFromGroup } from '../controllers/groupController/index'
+import { removeUserFromGroup } from '../controllers/groupController/index.js'
 
 const groupRouter = express.Router()
 

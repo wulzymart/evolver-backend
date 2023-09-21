@@ -1,3 +1,3 @@
-import { removeUserFromGroup } from "./methods/removeUserFromGroup";
+import { removeUserFromGroup } from "./methods/removeUserFromGroup.js";
 
 export { removeUserFromGroup }

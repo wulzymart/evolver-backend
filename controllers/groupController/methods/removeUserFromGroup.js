@@ -1,6 +1,6 @@
-const userGroups = require('../../../models/GroupMembership')
+import userGroups from '../../../models/GroupMembership.js'
 
-const removeUserFromGroup = async (req, res) => {
+export const removeUserFromGroup = async (req, res) => {
     try {
         const { groupId, userId } = req.params;
     
@@ -22,4 +22,3 @@ const removeUserFromGroup = async (req, res) => {
       }
 }
 
-export default removeUserFromGroup;
