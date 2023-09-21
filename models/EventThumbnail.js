@@ -15,4 +15,7 @@ const EventThumbnail = db.define("event_thumbnail", {
 	},
 });
 
+User.belongsToMany(Group, { through: EventThumbnail });
+Group.belongsToMany(User, { through: EventThumbnail });
+
 export default EventThumbnail;
