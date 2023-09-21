@@ -5,17 +5,21 @@ import db from "../config/db.js";
 const EventThumbnail = db.define("event_thumbnail", {
 	image_id: {
 		type: DataTypes.UUID,
-		defaultValue: DataTypes.UUIDV4,
-		allowNull: false,
+		references: {
+			model: Image,
+			key: "id",
+		},
 	},
 	event_id: {
 		type: DataTypes.UUID,
-		defaultValue: DataTypes.UUIDV4,
-		allowNull: false,
+		references: {
+			model: Event,
+			key: "id",
+		},
 	},
 });
 
-User.belongsToMany(Group, { through: EventThumbnail });
-Group.belongsToMany(User, { through: EventThumbnail });
+Event.belongsToMany(Image, { through: EventThumbnail });
+Image.belongsToMany(Event, { through: EventThumbnail });
 
 export default EventThumbnail;
