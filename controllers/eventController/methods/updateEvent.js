@@ -6,7 +6,7 @@ import Event from '../../../models/Event';
 const updateEvent = async (req, res) => {
     try {
 
-        // retrieves id 
+        // retrieves id as parameter
         const eventId = req.params.id;
 
         // checks if id is provided and an UUID
