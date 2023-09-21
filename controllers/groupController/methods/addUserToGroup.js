@@ -1,4 +1,4 @@
-import GroupMembership from "../../../models/GroupMembership";
+import GroupMembership from "../../../models/GroupMembership.js";
 
 function addUserToGroup(req, res) {
   const { userId, groupId } = req.params;
