@@ -5,6 +5,12 @@ import db from "../config/db.js";
 const Like = db.define(
   "like",
   {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      unique: true,
+      primaryKey: true,
+    },
     commentId: {
       type: DataTypes.UUID,
       references: {
@@ -26,6 +32,4 @@ const Like = db.define(
   }
 );
 
-// User.belongsToMany(Event, { through: Like });
-// Comment.belongsToMany(User, { through: Like });
 export default Like;
