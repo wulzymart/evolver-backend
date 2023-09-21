@@ -1,4 +1,4 @@
-import { listAllEvents } from "./methods/listEvents.js"
-import { getEventById } from "./methods/getEventDetails.js"
+import { listAllEvents } from "./methods/listEvents.js";
+import { getEventDetails } from "./methods/getEventDetails.js";
 
-export {getEventById, listAllEvents }
+export { getEventDetails, listAllEvents };
