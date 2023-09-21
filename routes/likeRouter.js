@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { updateUser } from "../controllers/userController/index.js";
+import { likePost } from "../controllers/likeController/index.js";
 
 const likeRouter = Router();
-
-likeRouter.put("/user/:id", updateUser);
+// ADD AUTHENTICATION
+likeRouter.patch("/:id/likePost", likePost);
 
 export default likeRouter;
