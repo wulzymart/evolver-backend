@@ -5,14 +5,14 @@ import db from "../config/db.js";
 const Like = db.define(
   "like",
   {
-    CommentId: {
+    commentId: {
       type: DataTypes.UUID,
       references: {
         model: Comment,
         key: "id",
       },
     },
-    UserId: {
+    userId: {
       type: DataTypes.UUID,
       references: {
         model: User,
