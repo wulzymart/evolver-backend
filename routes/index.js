@@ -9,15 +9,36 @@ import likeRouter from "./likeRouter.js";
 
 const router = Router();
 
+/**
+ * @swagger
+ * /user/:id:
+ *   put:
+ *     summary: Get a list of users
+ *     responses:
+ *       '200':
+ *         description: A list of users
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                   name:
+ *                     type: string
+ */
+
 router.use("/", welcomeRouter);
 
 router.use(userRouter);
 
 //describe the event routes
 router.use(ImageRouter);
-router.use(groupRouter)
+router.use(groupRouter);
 
-router.use(commentRouter)
+router.use(commentRouter);
 
 router.use(eventRouter);
 
