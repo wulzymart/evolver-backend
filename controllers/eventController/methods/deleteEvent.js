@@ -15,14 +15,6 @@ export const deleteEvent = async (req, res) => {
 		}
 		
 		let deleteResult = await event.destroy(); // Attempt a deletion
-
-		if (!(deleteResult && deleteResult.deletedAt)) { // Rturn error response on failed deletion
-			res.status(400).json({
-				status: "failed",
-				message: "Failed to delete event",
-			});
-			return 
-		}
 	
 		res.status(200).json({ // Return success response on successful deletion
 			success: true,
