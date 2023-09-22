@@ -1,28 +1,29 @@
 import { DataTypes } from "sequelize";
 import db from "../config/db.js";
 
-const CommentImages = db.define("comment_images", {
-  id: {
-    type: DataTypes.UUID,
-    primaryKey: true,
-    defaultValue: DataTypes.UUIDV4,
-  },
-  commentId: {
-    type: DataTypes.UUID,
-    allowNull: false,
-    references: {
-      model: "comment",
-      key: "id",
+const CommentImages = db.define(
+  "comment_images",
+  {
+    comment_id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      primaryKey: true,
+      references: {
+        model: "comment",
+        key: "id",
+      },
+    },
+    image_id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      primaryKey: true,
+      references: {
+        model: "image",
+        key: "id",
+      },
     },
   },
-  imageId: {
-    type: DataTypes.UUID,
-    allowNull: false,
-    references: {
-      model: "image",
-      key: "id",
-    },
-  },
-});
+  { timestamps: false, underscored: true },
+);
 
 export default CommentImages;
