@@ -3,8 +3,14 @@ import {
   createEvent,
   getEventDetails,
   listAllEvents,
+  deleteEvent
 } from "../controllers/eventController/index.js";
 import validate from "../middleware/validation.js";
+
+import {
+  AddCommentToEvent
+} from "../controllers/commentController/index.js"
+
 
 const eventRouter = express.Router();
 
@@ -14,5 +20,8 @@ in the createEvent route. It requires the req.session.userId. Ypu can refer to t
 eventRouter.post("/events", validate.Event, createEvent);
 eventRouter.get("/events", listAllEvents);
 eventRouter.get("/events/:id", getEventDetails);
+eventRouter.delete("/events/:id", deleteEvent);
+
+eventRouter.post("/events/:eventId", AddCommentToEvent);
 
 export default eventRouter;
