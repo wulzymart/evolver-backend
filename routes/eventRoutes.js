@@ -1,8 +1,10 @@
 import express from "express";
 import {
   createEvent,
+  deleteEvent,
   getEventDetails,
   listAllEvents,
+  updateEvent,
 } from "../controllers/eventController/index.js";
 import validate from "../middleware/validation.js";
 
@@ -79,5 +81,7 @@ in the createEvent route. It requires the req.session.userId. Ypu can refer to t
 eventRouter.post("/events", validate.Event, createEvent);
 eventRouter.get("/events", listAllEvents);
 eventRouter.get("/events/:id", getEventDetails);
+eventRouter.put("/events/:id", updateEvent);
+eventRouter.delete("/events/:id", deleteEvent);
 
 export default eventRouter;
