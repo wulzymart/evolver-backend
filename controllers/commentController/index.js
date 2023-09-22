@@ -1,3 +1,3 @@
-import { AddCommentToEvent } from "./methods/addComment";
+import listComments from "./methods/listComments.js";
 
-export { AddCommentToEvent };
+export { listComments } 
