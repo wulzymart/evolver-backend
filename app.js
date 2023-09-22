@@ -1,7 +1,7 @@
-import express from 'express';
-import cors from 'cors';
-import router from './routes/index.js';
-import db from './config/db.js';
+import express from "express";
+import cors from "cors";
+import router from "./routes/index.js";
+import db from "./config/db.js";
 // Create Express app
 const app = express();
 
@@ -16,7 +16,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // define api root route
 app.use("/api", router);
-
 
 db.authenticate()
   .then(() => {
