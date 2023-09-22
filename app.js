@@ -7,6 +7,7 @@ import cors from "cors";
 import router from "./routes/index.js";
 import db from "./config/db.js";
 import dotenv from "dotenv";
+import { userAuthorisation } from "./middleware/authorization.js";
 
 dotenv.config();
 
@@ -23,7 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // define api root route
-app.use("/api", router);
+app.use("/api", userAuthorisation, router);
 
 db.authenticate()
   .then(() => {

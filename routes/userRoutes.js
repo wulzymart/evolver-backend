@@ -10,10 +10,11 @@ import { removeInterest } from "../controllers/interestController/index.js";
 const userRouter = express.Router();
 
 userRouter.put("/user/:id", userCRUDAuthorisation, updateUser);
-userRouter.delete(
-  "/users/:userId/interests/:eventId",
-  interestsAuthorisation,
-  removeInterest,
-);
+
+//awaiting user post interest controller
+userRouter
+  .use("/users/:userId/interests/:eventId")
+  .delete(interestsAuthorisation, removeInterest)
+  .post(interestsAuthorisation); //awaiting user post interest controller to follow
 
 export default userRouter;
