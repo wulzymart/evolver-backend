@@ -19,6 +19,18 @@ export const userAuthorisation = (req, res, next) => {
   return next();
 };
 
+export const userCRUDAuthorisation = (req, res, next) => {
+  // if user is not loggen in,
+  if (req.user.id !== req.params.id)
+    return errorResponse(
+      res,
+      "You are not authorised to edit or delete another user",
+      401,
+    );
+  // all other endpoints are accessible
+  return next();
+};
+
 // Events endpoint authorisation needed of PUT and DELETE
 export const eventCRUDAuthorise = async (req, res, next) => {
   const userId = req.user.id;
