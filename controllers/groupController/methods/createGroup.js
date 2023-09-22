@@ -1,5 +1,5 @@
 import { StatusCodes } from "http-status-codes";
-import CreateGroup from "../../../models/CreateGroup.js";
+import Group from "../../../models/Group.js";
 import tryCatchHelper from "../../../utils/helpers/tryCatch.helpers.js";
 import { errorResponse, successResponse } from "../../../utils/helpers/response.helpers.js";
 
@@ -18,7 +18,7 @@ const createGroup = tryCatchHelper(async (req, res) => {
     return errorResponse(res, "Please provide all required fields", StatusCodes.BAD_REQUEST);
   }
 
-  const group = await CreateGroup.create({ title });
+  const group = await Group.create({ title });
 
   successResponse(res, "Group created successfully", { group }, StatusCodes.CREATED);
 });
