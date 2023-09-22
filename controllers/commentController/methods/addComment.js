@@ -19,7 +19,7 @@ export const AddCommentToEvent = async (req, res, next) => {
             return res.status(404)
                 .json({
                     status: " failed",
-                    message: "  User can't comment on this Event :"
+                    message: "  Event does not exit :"
                 })
         }
         const createComment = await Comment.create({
