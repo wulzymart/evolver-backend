@@ -3,6 +3,7 @@ import Group from "../../../models/Group.js";
 import tryCatchHelper from "../../../utils/helpers/tryCatch.helpers.js";
 import GroupMembership from "../../../models/GroupMembership.js";
 import GroupImage from "../../../models/GroupImage.js";
+import GroupEvents from "../../../models/GroupEvent.js";
 
 const deleteGroup = tryCatchHelper(async (req, res) => {
   const { groupId } = req.params;
@@ -21,6 +22,8 @@ const deleteGroup = tryCatchHelper(async (req, res) => {
         .status(StatusCodes.NOT_FOUND)
         .json({ error: "Group not found" });
     }
+
+    const groupTitle = group.title;
 
     // Delete all group memberships for this group
     const deletedGroupMemberships = await GroupMembership.destroy({
@@ -42,26 +45,29 @@ const deleteGroup = tryCatchHelper(async (req, res) => {
       },
     });
 
-    console.log(deletedGroupImages);
-
     if (deletedGroupImages) {
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
         error: "Unable to delete group images",
       });
     }
 
-    const deletedGroup = await group.destroy();
+    // Delete all group events for this group
+    const deletedEvents = await GroupEvents.destroy({
+      where: {
+        group_id: group.id,
+      },
+    });
 
-    console.log(deletedGroup);
-
-    if (deletedGroup) {
+    if (deletedEvents) {
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-        error: "Unable to delete group",
+        error: "Unable to delete group events",
       });
     }
 
+    await group.destroy();
+
     return res.status(StatusCodes.OK).json({
-      message: `${group.title} deleted successfully`,
+      message: `${groupTitle} deleted successfully`,
     });
   } catch (error) {
     console.log(error);
