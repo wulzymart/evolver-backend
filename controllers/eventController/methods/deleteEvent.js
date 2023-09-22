@@ -18,7 +18,7 @@ const deleteEvents = async (req, res) => {
             res.status(404).json('Event can not be found')
         }
 
-        // deletes events
+        // deletes event
         await events.destroy()
         res.status(200).json({ message: 'Event has been deleted successfully'});
     } catch (err) {
