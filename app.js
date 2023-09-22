@@ -4,6 +4,8 @@ import router from "./routes/index.js";
 import db from "./config/db.js";
 import dotenv from "dotenv";
 
+import swaggerDocs from "./utils/helpers/swagger.js";
+
 dotenv.config();
 
 // Create Express app
@@ -32,4 +34,6 @@ db.authenticate()
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}.`);
+
+  swaggerDocs(app, port);
 });
