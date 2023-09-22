@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
-import Group from "../../../models/Group.js";
 import tryCatchHelper from "../../../utils/helpers/tryCatch.helpers.js";
 import { errorResponse, successResponse } from "../../../utils/helpers/response.helpers.js";
+import Group from "../../../models/Group.js";
 
 /**
  * @description Delete a Group
