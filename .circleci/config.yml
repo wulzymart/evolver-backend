@@ -27,8 +27,8 @@ jobs:
             DB_PORT: 3306
 
       - run:
-          name: Run the Project
-          command: npm run start
+          name: Run the Project test
+          command: npm run db:test
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
