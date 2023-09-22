@@ -3,60 +3,60 @@
  * this is tentative with assumption that session object in request will contain user id generated at authentication and supplied by the frontend
  *
  */
-import Event from '../models/event.js';
-import Group from '../models/group.js';
+import Event from "../models/Event.js";
+import Group from "../models/groups.js";
 
 // authorises entry into the app to ensure user is logged in
-const userAuthorisation = (req, res, next) => {
+export const userAuthorisation = (req, res, next) => {
   // if user is not loggen in,
-  if (!req.session?.userId)
+  if (!req.user)
     return res
       .status(401)
-      .json({ status: 'failed', msg: 'You are not logged in' });
+      .json({ status: "failed", msg: "You are not logged in" });
   // all other endpoints are accessible
   return next();
 };
 
 // Events endpoint authorisation needed of PUT and DELETE
-const eventCRUDAuthorise = async (req, res, next) => {
-  const userId = req.session.userId;
+export const eventCRUDAuthorise = async (req, res, next) => {
+  const userId = req.user.id;
   const { eventId } = req.params;
-  const event = Event.findByPK(eventId);
+  const event = Event.findByPk(eventId);
 
   if (!event)
     // if event is not found
     return res
       .status(400)
-      .json({ status: 'failed', msg: 'Event doesnt exist' });
+      .json({ status: "failed", msg: "Event doesnt exist" });
   // for PUT and DELETE check if user is creator
-  if (req.method === 'PUT' || req.method === 'DELETE') {
+  if (req.method === "PUT" || req.method === "DELETE") {
     if (event.creator !== userId)
       return res.status(401).json({
-        status: 'failed',
-        msg: 'You are not the creator of this event',
+        status: "failed",
+        msg: "You are not the creator of this event",
       });
   }
   return next();
 };
 
 // Groups endpoint authorisation for updating and deleting groups
-const groupCrudAuthorisation = (req, res, next) => {
-  const userId = req.session.userId;
+export const groupCrudAuthorisation = (req, res, next) => {
+  const userId = req.user.id;
   const { groupId } = req.params;
-  const group = Group.findByPK(groupId);
+  const group = Group.findByPk(groupId);
 
   if (!group)
     // check if a group exists
     return res
       .status(400)
-      .json({ status: 'failed', msg: 'Group doesnt exist' });
+      .json({ status: "failed", msg: "Group doesnt exist" });
 
   // for PUT and DELETE check if user is admin
-  if (req.method === 'PUT' || req.method === 'DELETE') {
-    if (group.admin !== userId)
+  if (req.method === "PUT" || req.method === "DELETE") {
+    if (group.creator_id !== userId)
       return res.status(401).json({
-        status: 'failed',
-        msg: 'You are not the creator of this group',
+        status: "failed",
+        msg: "You are not the creator of this group",
       });
   }
 
@@ -64,22 +64,22 @@ const groupCrudAuthorisation = (req, res, next) => {
 };
 
 // Authorisation for deletion of group members (DELETE only) the if statement for request is to guard for delete
-const groupMembershipCrudAuthorisation = (req, res, next) => {
-  const userId = req.session.userId;
+export const groupMembershipCrudAuthorisation = (req, res, next) => {
+  const userId = req.user.id;
   const { groupId } = req.params;
-  const group = Group.findByPK(groupId);
+  const group = Group.findByPk(groupId);
   if (!group)
     // group doesnt exist
     return res
       .status(400)
-      .json({ status: 'failed', msg: 'Group doesnt exist' });
+      .json({ status: "failed", msg: "Group doesnt exist" });
 
   //   for DELETE only
-  if (req.method === 'DELETE') {
-    if (group.admin !== userId || userId != req.params.userId)
+  if (req.method === "DELETE") {
+    if (group.creator_id !== userId || userId != req.params.userId)
       return res.status(401).json({
-        status: 'failed',
-        msg: 'You are not authorised to delete a user',
+        status: "failed",
+        msg: "You are not authorised to delete a user",
       });
   }
 
@@ -87,15 +87,26 @@ const groupMembershipCrudAuthorisation = (req, res, next) => {
 };
 
 // Interests: user can only remove his own interest
-const interestRemoveAuthorisation = (req, res, next) => {
-  const userId = req.session.userId;
+export const interestsAuthorisation = (req, res, next) => {
+  const userId = req.user.id;
   const { userId: usertoDelete } = req.params;
-  if (req.method === 'DELETE') {
-    if (userId !== usertoDelete)
-      return res.status(401).json({
-        status: 'failed',
-        msg: 'You are not authorised to delete another users interest',
-      });
-  }
+
+  if (userId !== usertoDelete)
+    return res.status(401).json({
+      status: "failed",
+      msg: "You are not authorised to delete or add interests for others",
+    });
+  return next();
+};
+
+//likes: user can only unlike whe he/she liked
+export const likesAuthorisation = (req, res, next) => {
+  const userId = req.user.id;
+  const { userId: usertoDelete } = req.params;
+  if (userId !== usertoDelete)
+    return res.status(401).json({
+      status: "failed",
+      msg: "You are not authorised to add/remove another user's likes",
+    });
   return next();
 };
