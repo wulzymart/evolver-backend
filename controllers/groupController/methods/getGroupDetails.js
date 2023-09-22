@@ -1,10 +1,10 @@
-import GroupMembership from "../../../models/GroupMembership.js";
+import Group from "../../../models/Group.js";
 
 async function getGroupDetails(req, res) {
     const { groupId } = req.params;
 
     try {
-        const groupDetails = await GroupMembership.findOne({ where: {group_id: groupId}});
+        const groupDetails = await Group.findByPk(groupId);
         if (groupDetails == null) return res.status(404).json({message: "Group not found"});
 
         return res.status(200).json({
