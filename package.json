@@ -2,17 +2,16 @@
   "name": "evolver-events-backend",
   "version": "1.0.0",
   "description": "Evolver events app",
-  "main": "server.js",
+  "main": "app.js",
   "type": "module",
-  "engines": {
-    "node": "^18"
-  },
   "directories": {
     "test": "tests"
   },
   "scripts": {
+    "db:test": "node tests/db.test.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -28,11 +27,7 @@
   },
   "homepage": "https://github.com/hngx-org/Evolver-events-backend#readme",
   "dependencies": {
-    "-": "^0.0.1",
     "mysql2": "^3.6.1",
-    "save-dev": "^0.0.1-security",
-    "sequelize": "^6.33.0",
-    "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.0"
+    "sequelize": "^6.33.0"
   }
 }
