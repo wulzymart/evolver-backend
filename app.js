@@ -2,7 +2,12 @@ import express from "express";
 import cors from "cors";
 import router from "./routes/index.js";
 import db from "./config/db.js";
+import express from "express";
+import cors from "cors";
+import router from "./routes/index.js";
+import db from "./config/db.js";
 import dotenv from "dotenv";
+import { userAuthorisation } from "./middleware/authorization.js";
 import passport from 'passport';
 import cookieSession from 'cookie-session';
 require('./config/passport');
@@ -30,7 +35,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // define api root route
-app.use("/api", router);
+app.use("/api", userAuthorisation, router);
 
 db.authenticate()
   .then(() => {

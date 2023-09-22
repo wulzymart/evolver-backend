@@ -1,10 +1,20 @@
-import express from 'express'
-import { updateUser } from '../controllers/userController/index.js'
-import {removeInterest} from '../controllers/interestController/index.js'
+import express from "express";
+import { updateUser } from "../controllers/userController/index.js";
+import {
+  interestsAuthorisation,
+  userCRUDAuthorisation,
+} from "../middleware/authorization.js";
 
-const userRouter = express.Router()
+import { removeInterest } from "../controllers/interestController/index.js";
 
-userRouter.put('/user/:id', updateUser)
-userRouter.delete('/users/:userId/interests/:eventId', removeInterest)
+const userRouter = express.Router();
+
+userRouter.put("/user/:id", userCRUDAuthorisation, updateUser);
+
+//awaiting user post interest controller
+userRouter
+  .use("/users/:userId/interests/:eventId")
+  .delete(interestsAuthorisation, removeInterest)
+  .post(interestsAuthorisation); //awaiting user post interest controller to follow
 
 export default userRouter;
