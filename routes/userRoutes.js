@@ -13,7 +13,7 @@ userRouter.put("/user/:id", userCRUDAuthorisation, updateUser);
 
 //awaiting user post interest controller
 userRouter
-  .use("/users/:userId/interests/:eventId")
+  .route("/users/:userId/interests/:eventId")
   .delete(interestsAuthorisation, removeInterest)
   .post(interestsAuthorisation); //awaiting user post interest controller to follow
 
