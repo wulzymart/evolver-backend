@@ -7,15 +7,18 @@ export const createEvent = async (req, res) => {
     const {
       title,
       description,
+      creator_id,
       location,
       start_date,
       end_date,
       start_time,
       end_time,
     } = req.body;
+
     const errors = validationResult(req);
+
     if (!errors.isEmpty()) {
-      res.status(400).json({
+      return res.status(400).json({
         status: "error",
         msg: errors.array(),
       });
@@ -24,7 +27,8 @@ export const createEvent = async (req, res) => {
         title,
         description,
         location,
-        creator_id: req.session.userId,
+        // no active session yet, so passing creator_id in the body
+        creator_id,
         start_date,
         end_date,
         start_time,
