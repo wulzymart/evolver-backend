@@ -1,24 +1,17 @@
 import db from "../config/db.js";
 import { DataTypes } from "sequelize";
 
-const User = db.define(
-  "user",
+const Group = db.define(
+  "groups",
   {
     id: {
-      type: DataTypes.STRING,
+      type: DataTypes.UUID,
       primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
     },
-    name: {
+    title: {
       type: DataTypes.TEXT,
       allowNull: false,
-    },
-    email: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    avatar: {
-      type: DataTypes.TEXT,
-      allowNull: true,
     },
     created_at: {
       type: DataTypes.DATE,
@@ -32,9 +25,7 @@ const User = db.define(
       onUpdate: DataTypes.NOW,
     },
   },
-  {
-    timestamps: false,
-  },
+  { timestamps: false },
 );
 
-export default User;
+export default Group;
