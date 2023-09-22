@@ -13,7 +13,8 @@ import {
 // authorises entry into the app to ensure user is logged in
 export const userAuthorisation = (req, res, next) => {
   // if user is not loggen in,
-  if (!req.user) return errorResponse(res, "You are not logged in", 401);
+  if (!req.isAuthenticated() || !req.user)
+    return errorResponse(res, "You are not logged in", 401);
   // all other endpoints are accessible
   return next();
 };
