@@ -2,6 +2,14 @@ import express from "express";
 import cors from "cors";
 import router from "./routes/index.js";
 import db from "./config/db.js";
+import express from "express";
+import cors from "cors";
+import router from "./routes/index.js";
+import db from "./config/db.js";
+import dotenv from "dotenv";
+
+dotenv.config();
+
 // Create Express app
 const app = express();
 
@@ -25,7 +33,7 @@ db.authenticate()
     console.error("Unable to connect to the database: ", error);
   });
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}.`);
 });

@@ -9,6 +9,7 @@ import { groupMembershipCrudAuthorisation } from "../middleware/authorization.js
 const groupRouter = express.Router();
 
 groupRouter.post("/groups", createGroup);
+groupRouter.put("/groups/:groupId");
 groupRouter.post(
   "/groups/:groupId/members/:userId",
   groupMembershipCrudAuthorisation,

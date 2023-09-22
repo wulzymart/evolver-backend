@@ -1,6 +1,7 @@
 import { Router } from "express";
 import welcomeRouter from "./welcomeRoute.js";
 import userRouter from "./userRoutes.js";
+import ImageRouter from "./ImageRoutes.js";
 import eventRouter from "./eventRoutes.js";
 import groupRouter from "./groupRoutes.js";
 import commentRouter from "./commentRoutes.js";
@@ -12,6 +13,8 @@ router.use("/", welcomeRouter);
 
 router.use(userRouter);
 
+//describe the event routes
+router.use(ImageRouter);
 router.use(groupRouter)
 
 router.use(commentRouter)
