@@ -1,24 +1,23 @@
 import { StatusCodes } from "http-status-codes";
-import tryCatchHelper from "../../../utils/helpers/tryCatch.helpers.js";
-import { errorResponse, successResponse } from "../../../utils/helpers/response.helpers.js";
 import Group from "../../../models/Group.js";
+import tryCatchHelper from "../../../utils/helpers/tryCatch.helpers.js";
 
 const deleteGroup = tryCatchHelper(async (req, res) => {
   const { groupId } = req.params;
 
   if (!groupId) {
-    return errorResponse(res, "Invalid group ID", StatusCodes.BAD_REQUEST);
+    return res.status(StatusCodes.BAD_REQUEST).json({ error: "Invalid group ID" });
   }
 
-  const group = await Group.findByPk(groupId); // Find group
+  const group = await Group.findByPk(groupId); // Find the group
 
   if (!group) {
-    return errorResponse(res, "Group not found", StatusCodes.NOT_FOUND);  
+    return res.status(StatusCodes.NOT_FOUND).json({ error: "Group not found" });
   }
 
-  await group.destroy(); // Delete group
+  await group.destroy();  // Delete the group
 
-  successResponse(res, `${group.title} deleted successfully`, null, StatusCodes.NO_CONTENT);  
+  return res.status(StatusCodes.NO_CONTENT).json({ message: `${group.title} deleted successfully` });
 });
 
 export default deleteGroup;
