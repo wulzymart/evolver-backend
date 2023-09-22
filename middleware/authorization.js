@@ -4,7 +4,7 @@
  *
  */
 import Event from "../models/Event.js";
-import Group from "../models/groups.js";
+import Group from "../models/Groups.js";
 
 // authorises entry into the app to ensure user is logged in
 export const userAuthorisation = (req, res, next) => {
