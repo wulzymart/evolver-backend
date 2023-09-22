@@ -1,8 +1,10 @@
-import express from 'express'
-import { removeUserFromGroup } from '../controllers/groupController/index.js'
+import express from "express";
+import { addUserToGroup, removeUserFromGroup, createGroup } from "../controllers/groupController/index.js";
 
-const groupRouter = express.Router()
+const groupRouter = express.Router();
 
-groupRouter.delete('/groups/:groupId/members/:userId', removeUserFromGroup)
+groupRouter.post("/groups", createGroup);
+groupRouter.post("/groups/:groupId/members/:userId", addUserToGroup);
+groupRouter.delete("/groups/:groupId/members/:userId", removeUserFromGroup);
 
 export default groupRouter;
