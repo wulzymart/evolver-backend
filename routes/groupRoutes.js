@@ -4,16 +4,22 @@ import {
   removeUserFromGroup,
   createGroup,
 } from "../controllers/groupController/index.js";
-import { groupMembershipCrudAuthorisation } from "../middleware/authorization.js";
+import {
+  groupCrudAuthorisation,
+  groupMembershipCrudAuthorisation,
+} from "../middleware/authorization.js";
+import {
   getGroupDetails,
   deleteGroup,
 } from "../controllers/groupController/index.js";
 
 const groupRouter = express.Router();
 
+groupRouter.get("/groups/:groupId", getGroupDetails);
 groupRouter.post("/groups", createGroup);
 groupRouter.put("/groups/:groupId");
-<<<<<<< HEAD
+groupRouter.delete("/groups/:groupId", groupCrudAuthorisation, deleteGroup);
+
 groupRouter.post(
   "/groups/:groupId/members/:userId",
   groupMembershipCrudAuthorisation,
@@ -24,11 +30,5 @@ groupRouter.delete(
   groupMembershipCrudAuthorisation,
   removeUserFromGroup,
 );
-=======
-groupRouter.delete("/groups/:groupId", deleteGroup);
-groupRouter.post("/groups/:groupId/members/:userId", addUserToGroup);
-groupRouter.delete("/groups/:groupId/members/:userId", removeUserFromGroup);
-groupRouter.get("/groups/:groupId", getGroupDetails);
->>>>>>> dev
 
 export default groupRouter;

@@ -77,11 +77,14 @@ export const groupMembershipCrudAuthorisation = (req, res, next) => {
     // group doesnt exist
     return errorResponse(res, "Group doesnt exist", 404);
 
-  //   for DELETE only
-  if (req.method === "DELETE") {
-    if (group.creator_id !== userId || userId != req.params.userId)
-      return errorResponse(res, "You are not authorised to delete a user", 401);
-  }
+  //   for DELETE and ADD only
+
+  if (group.creator_id !== userId || userId != req.params.userId)
+    return errorResponse(
+      res,
+      "You are not authorised to add or delete another user",
+      401,
+    );
 
   return next();
 };
