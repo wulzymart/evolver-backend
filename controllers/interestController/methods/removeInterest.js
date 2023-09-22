@@ -3,7 +3,7 @@ import userInterest from '../../../models/Interest.js';
 
 export const removeInterest = async(req, res) =>{
         try{
-            const {groupId, userId} = req.params;
+            const {eventId, userId} = req.params;
 
             const deletedInterest = await userInterest.destroy({
                 where: {
