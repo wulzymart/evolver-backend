@@ -13,7 +13,7 @@ export const AddCommentToEvent = async (req, res, next) => {
         // only user can update events
         const event = await Event.findByPk(EventId)
 
-        // to check if userid and eventid are valid
+        // to check if eventid are valid
 
         if (!event) {
             return res.status(404)
@@ -24,7 +24,6 @@ export const AddCommentToEvent = async (req, res, next) => {
         }
         const createComment = await Comment.create({
             body: req.body.body,
-            user_id: UserId,
             event_id: EventId
 
         })
