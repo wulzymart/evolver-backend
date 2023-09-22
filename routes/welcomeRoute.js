@@ -6,21 +6,18 @@ const welcomeRouter = Router();
  * @swagger
  * /api:
  *   get:
- *     summary: Get a list of users
+ *     summary: Get a welcome message
  *     responses:
  *       '200':
- *         description: A list of users
+ *         description: A welcome message
  *         content:
  *           application/json:
  *             schema:
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
- *                   id:
- *                     type: integer
- *                   name:
- *                     type: string
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: A welcome message
  */
 
 welcomeRouter.get("/", (_req, res) => {
