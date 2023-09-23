@@ -8,7 +8,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      
       - name: Deploy to Production
         uses: appleboy/ssh-action@master
         with:
@@ -17,4 +16,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SERVER_SSH_PORT }}
           script: |
-            sudo systemctl restart dev_evolver.service
+            sudo systemctl restart evolver
