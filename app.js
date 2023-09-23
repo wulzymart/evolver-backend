@@ -27,10 +27,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   cookieSession({
     name: "server",
-    key: process.env.KEY, // The name of the cookie to store the session data
+    keys: [process.env.KEY], // The name of the cookie to store the session data
     secret: process.env.SECRET, // A secret string used to sign and encrypt the cookie
     maxAge: 24 * 60 * 60 * 1000, // The maximum age of the cookie in milliseconds
-  }),
+  })
 );
 app.use(passport.initialize());
 app.use(passport.session());
