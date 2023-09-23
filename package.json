@@ -8,8 +8,6 @@
     "test": "tests"
   },
   "scripts": {
-    "db:test": "node tests/db.test.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "dev": "nodemon app.js"
   },

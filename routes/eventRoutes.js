@@ -5,7 +5,6 @@ import {
   getEventDetails,
   listAllEvents,
   updateEvent,
-  deleteEvent,
 } from "../controllers/eventController/index.js";
 import validate from "../middleware/validation.js";
 import {

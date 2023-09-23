@@ -19,9 +19,6 @@ import express from "express";
 import { listComments } from "../controllers/commentController/index.js";
 
 import { userAuthorisation } from "../middleware/authorization.js";
-
-commentRouter.get("/events/:eventId/comment", listComments);
-
 const commentRouter = express.Router();
 
 commentRouter.get("/events/:eventId/comments", userAuthorisation, listComments);
